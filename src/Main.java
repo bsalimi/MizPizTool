@@ -15,6 +15,6 @@ public class Main {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }
-        System.out.print("babak kiramo bokhor");
+        System.out.print("dahane amat koni!");
     }
 }
