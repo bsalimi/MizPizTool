@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="Property" table="Properties">
+        <id name="id" type="int" column="PRO_ID">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="NAME" type="string"/>
+        <property name="type" column="TYPE" type="string"/>
+
+    </class>
+</hibernate-mapping>
