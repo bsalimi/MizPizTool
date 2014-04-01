@@ -1,4 +1,4 @@
-
+package com.mizpiz.presist.obj;
 
 import java.lang.String; /**
  * Created by The Killer on 16/03/14.

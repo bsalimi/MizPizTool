@@ -4,14 +4,14 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="Instance$Entity" table="ENTITIES">
+    <class name="com.mizpiz.presist.obj.Entity" table="ENTITIES">
         <id name="id" type="int" column="ENT_ID">
             <generator class="native"/>
         </id>
         <property name="name" column="NAME" type="string"/>
         <set name="Properties" cascade="all">
             <key column="ENT_ID"/>
-            <one-to-many class="Property"/>
+            <one-to-many class="com.mizpiz.presist.obj.Property"/>
         </set>
     </class>
 </hibernate-mapping>

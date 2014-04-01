@@ -1,3 +1,4 @@
+package com.mizpiz.presist.obj;
 
 import java.sql.Blob;
 

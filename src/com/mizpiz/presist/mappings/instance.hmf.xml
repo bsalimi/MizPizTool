@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="Instance" table="INSTANCE">
+    <class name="com.mizpiz.presist.obj.Instance" table="INSTANCE">
         <id name="id" type="int" column="ENT_ID">
             <generator class="native"/>
         </id>
@@ -12,14 +12,14 @@
 
         <set name="Properties" cascade="all">
             <key column="PROP_ID"/>
-            <one-to-many class="Property"/>
+            <one-to-many class="com.mizpiz.presist.obj.Property"/>
         </set>
 
-        <one-to-one name="entity" class="Instance$Entity"/>
+        <one-to-one name="entity" class="com.mizpiz.presist.obj.Entity"/>
 
         <set name="Value" cascade="all">
             <key column="VAL_ID"/>
-            <one-to-many class="Value"/>
+            <one-to-many class="com.mizpiz.presist.obj.Value"/>
         </set>
     </class>
 </hibernate-mapping>

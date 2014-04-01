@@ -3,14 +3,14 @@
         "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="Value" table="VALUE">
+    <class name="com.mizpiz.presist.obj.Value" table="VALUE">
         <id name="id" type="int" column="VAL_ID">
             <generator class="native"/>
         </id>
 
         <discriminator column="Value_TYPE" type="string"/>
 
-       <subclass name="ImagVal" discriminator-value="IMAGE">
+       <subclass name="com.mizpiz.presist.obj.ImageVal" discriminator-value="IMAGE">
             <property name="value" type="blob"/>
         </subclass>
 
