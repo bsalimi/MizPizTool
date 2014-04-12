@@ -11,7 +11,7 @@
         <property name="name" column="NAME" type="string"/>
         <set name="Properties" cascade="all">
             <key column="ENT_ID"/>
-            <one-to-many class="com.mizpiz.presist.obj.Property"/>
+            <many-to-many class="com.mizpiz.presist.obj.Property"/>
         </set>
     </class>
 </hibernate-mapping>

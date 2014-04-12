@@ -1,30 +1,20 @@
 package com.mizpiz.biz;
 
+import com.mizpiz.presist.obj.IntegerVal;
 import com.mizpiz.presist.obj.Property;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 
-public class CRUD {
-    public static void createProperty(Property property) throws MizpizException {
-        try {
-            SessionFactory sf = new Configuration().configure().buildSessionFactory();
-            Session session = sf.openSession();
-            Transaction transaction = session.beginTransaction();
-            session.save(property);
-            transaction.commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            throw new MizpizException(MizpizException.PERSISTING_ERROR);
-        }
-    }
+import java.util.List;
 
-    public static void main(String[] args) throws MizpizException {
-        Property property = new Property();
-        property.setName("testProperty");
-        property.setType("testType");
-        createProperty(property);
-    }
+public class   CRUD {
+    public PropertyDao propertyDao;
+    public EntityDao entityDao;
+    public ImageValDao imageValDao;
+    public StringValDao stringValDao;
+    public IntegerValDao integerValDao;
+    public InstanceDao instanceDao;
+
+
+
 }

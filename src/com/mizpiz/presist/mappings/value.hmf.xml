@@ -7,14 +7,25 @@
         <id name="id" type="int" column="VAL_ID">
             <generator class="native"/>
         </id>
-
         <discriminator column="Value_TYPE" type="string"/>
-
-       <subclass name="com.mizpiz.presist.obj.ImageVal" discriminator-value="IMAGE">
-            <property name="value" type="blob"/>
+        <subclass name="com.mizpiz.presist.obj.ImageVal" discriminator-value="IMAGE">
+            <property name="value" type="java.sql.Blob"/>
+            <one-to-one  name="property" class="com.mizpiz.presist.obj.Property"/>
+        </subclass>
+        <subclass name="com.mizpiz.presist.obj.MovieVal" discriminator-value="Movie">
+            <property name="value" type="java.sql.Blob"/>
+            <one-to-one  name="property" class="com.mizpiz.presist.obj.Property"/>
+        </subclass>
+        <subclass name="com.mizpiz.presist.obj.IntegerVal" discriminator-value="Long">
+            <property name="value" type="long"/>
+            <one-to-one  name="property" class="com.mizpiz.presist.obj.Property"/>
+        </subclass>
+        <subclass name="com.mizpiz.presist.obj.StringVal" discriminator-value="String">
+            <property name="value" type="java.lang.String"/>
+            <one-to-one  name="property" class="com.mizpiz.presist.obj.Property"/>
         </subclass>
 
-    </class>
 
+    </class>
 
 </hibernate-mapping>

@@ -8,18 +8,29 @@ import java.sql.Blob;
 
 public class Value {
     private int id;
-    public Value() {}
+    private String Value_TYPE;
+    private Property property;
 
-    public Value(int id) {
-                this.id = id;
+    public Property getProperty() {
+        return property;
     }
 
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
+    public Value() {}
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
+    }
+    public void setValue_Type(String value_Type) {
+        Value_TYPE = value_Type;
+    }
+    public String getValue_Type() {
+        return Value_TYPE;
     }
 }
 

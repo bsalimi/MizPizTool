@@ -10,14 +10,9 @@
         </id>
         <property name="name" column="NAME" type="string"/>
 
-        <set name="Properties" cascade="all">
-            <key column="PROP_ID"/>
-            <one-to-many class="com.mizpiz.presist.obj.Property"/>
-        </set>
+        <many-to-one name="entity" class="com.mizpiz.presist.obj.Entity"/>
 
-        <one-to-one name="entity" class="com.mizpiz.presist.obj.Entity"/>
-
-        <set name="Value" cascade="all">
+        <set name="value" cascade="all">
             <key column="VAL_ID"/>
             <one-to-many class="com.mizpiz.presist.obj.Value"/>
         </set>

@@ -12,7 +12,7 @@
         </property>
         <!-- Assume test is the d atabase name -->
         <property name="hibernate.connection.url">
-            jdbc:mysql://134.117.27.250:3306/test
+            jdbc:mysql://134.117.27.250:3306/mizpiztool
         </property>
         <property name="hibernate.connection.username">
             root
@@ -23,6 +23,7 @@
         <property name="hibernate.hbm2ddl.auto">
             update
         </property>
+        <property  name="show_sql">true</property>
 
         <!-- List of XML mapping files -->
         <mapping resource="com\mizpiz\presist\mappings\entity.hmf.xml"/>

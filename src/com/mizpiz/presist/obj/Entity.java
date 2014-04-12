@@ -7,6 +7,9 @@ public class Entity {
     public String name;
     public Set<Property> properties;
 
+    public Entity() {
+    }
+
     public Entity(int id, String name, Set<Property> properties) {
         this.id = id;
         this.name = name;
@@ -35,5 +38,13 @@ public class Entity {
 
     public void setProperties(Set<Property> properties) {
         this.properties = properties;
+    }
+
+    @Override
+    public String toString() {
+        return "Entity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                     '}';
     }
 }
