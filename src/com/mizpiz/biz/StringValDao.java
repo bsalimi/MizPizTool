@@ -28,9 +28,9 @@ public class StringValDao {
     //            throw new MizpizException(MizpizException.Uniqueness_ERROR);
             //    string.toString();
        //         session.s;
-         //   session.ge
+            session.save(string);
             session.getTransaction().commit();
-                System.out.print("Saved! \n" );
+                System.out.print("Value Saved! \n" );
 
         } catch (HibernateException e) {
             if (trns != null) {
@@ -40,7 +40,7 @@ public class StringValDao {
             }
             e.printStackTrace();
         } finally {
-          //  session.flush();
+            session.flush();
             session.close();
         }
     }

@@ -18,5 +18,12 @@ public class StringVal extends Value {
         this.value = value;
     }
 // the MountainBike subclass has one constructor
+@Override
+public String toString() {
+    return "Value{" +
+            "id=" + this.getId() +
+            ", name='" + value + '\'' +
+            '}';
+}
 }
 

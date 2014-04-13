@@ -22,7 +22,7 @@ public class EntityDao {
             query = session.createQuery(hql);
             query.setParameter("Entity_name",entity.getName());
             List results = query.list();
- //         System.out.print("results size"+ results.size()+ "\n");
+            System.out.print("results size"+ results.size()+ "\n");
             if( results.size() != 0) {
                 System.out.print(entity.getName()+"Already exists \n");
                 throw new MizpizException(MizpizException.Uniqueness_ERROR);

@@ -2,6 +2,7 @@ package com.mizpiz.biz;
 
 import com.mizpiz.presist.obj.Entity;
 import com.mizpiz.presist.obj.Instance;
+import com.mizpiz.presist.obj.Value;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -29,9 +30,12 @@ public class InstanceDao {
  //               throw new MizpizException(MizpizException.Uniqueness_ERROR);
   //          }
  //           else {
-                session.save(instance);
+
+
+              session.save(instance);
+            System.out.print(instance.toString());
                 session.getTransaction().commit();
-                System.out.print("Saved! \n" );
+                System.out.print("Instace Saved! \n" );
             }
 
          catch (HibernateException e) {
@@ -41,7 +45,7 @@ public class InstanceDao {
             }
             e.printStackTrace();
         } finally {
-      //      session.flush();
+           session.flush();
             session.close();
         }
     }

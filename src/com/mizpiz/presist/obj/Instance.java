@@ -52,9 +52,12 @@ public class Instance {
 
     @Override
     public String toString() {
+        String pr="empty";
+        String val="empty";
+
         return "Instance{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + name +"Entitiy: "+entity.toString()+'\''  + "Value:"+ getValue().toString() +'\'' +
                 '}';
     }
 }

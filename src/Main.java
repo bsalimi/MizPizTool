@@ -1,5 +1,6 @@
 
 import com.mizpiz.biz.CRUD;
+import com.mizpiz.biz.EntityDao;
 import com.mizpiz.biz.HibernateUtil;
 import com.mizpiz.biz.MizpizException;
 import com.mizpiz.presist.obj.*;
@@ -24,30 +25,7 @@ import java.util.List;
  * Created by The Killer on 16/03/14.
  */
 public class Main {
-    public void AddEntity() {
-        Entity e1 = new Entity();
-        e1.setName("Bicycle");
-        Set<Property> propertySet = new HashSet<Property>();
-        Property p1, p2, p3;
-        p1 = p2 = p3 = new Property();
-        p1.setName("Color");
-        p1.setType("String");
-        p2.setName("Price");
-        p2.setType("String");
-        p3.setName("model");
-        p3.setType("String");
-        propertySet.add(p1);
-        propertySet.add(p2);
-        propertySet.add(p3);
-        e1.setProperties(propertySet);
-        CRUD crud = new CRUD();
-        try {
-            crud.entityDao.createEntity(e1);
-        } catch (MizpizException e) {
-            e.printStackTrace();
-            //  System.out.print("e");
-        }
-    }
+
 
     public void printProperty() {
         Property p1 = new Property();
@@ -61,9 +39,12 @@ public class Main {
         Entity e1 = new Entity();
         Property p1 = new Property();
         Property p2 = new Property();
-        p1.setType("color");
-        p2.setName("price");
-        p2.setType(" Brand");
+        p1.setType("String");
+        p2.setType("String");
+
+        p1.setName("price");
+        p2.setName("Brand");
+
         e1.setName("bicycle");
         Set<Property> propertySet = new HashSet<Property>();
         propertySet.add(p1);
@@ -71,10 +52,12 @@ public class Main {
         e1.setProperties(propertySet);
         CRUD crud = new CRUD();
         try {
+            System.out.print(e1.toString());
             crud.entityDao.createEntity(e1);
         } catch (MizpizException e) {
             e.printStackTrace();
-            //  System.out.print("e");
+            System.out.print("e");
+
         }
     }
 
@@ -84,7 +67,7 @@ public class Main {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Instance instance = new Instance();
         instance.setName("mybic");
-        Entity entity= (Entity) session.load(Entity.class, new Integer(1));
+        Entity entity= (Entity) session.load(Entity.class, new Integer(2));
         instance.setEntity(entity);
 
         Set<Value> valuset=new HashSet<Value>();
@@ -95,10 +78,21 @@ public class Main {
         stringVal2.setValue("kohestan");
         Set<Property> propertySet = entity.getProperties();
         int i=0;
-        for (Iterator<Property> iterator = propertySet.iterator(); iterator.hasNext(); ) {
-            Property next = iterator.next();
-            properties[i]=next;
+
+        for (Property property : propertySet) {
+            if(property.getId()!= 0)
+            properties[i]=property;
+            System.out.print(i);
             i++;
+
+        }
+
+        for (int j = 0; j < 2; j++) {
+
+            Property property = properties[j];
+
+         //   System.out.print(properties[j].toString());
+
         }
         stringVal1.setProperty(properties[1]);
         stringVal2.setProperty(properties[2]);
@@ -106,17 +100,20 @@ public class Main {
         valuset.add(stringVal2);
         CRUD crud = new CRUD();
         instance.setValue(valuset);
-        System.out.print(instance.toString());
-        try {
-            crud.instanceDao.createInstance(instance);
-        } catch (MizpizException e) {
-            e.printStackTrace();
-            System.out.print("e");
-        }
+      //  System.out.print("instance is :"+ instance.getValue().toString());
+       try{
+
+           crud.instanceDao.createInstance(instance);
+       } catch (MizpizException e) {
+           e.printStackTrace();
+           System.out.print("e");
+       }
     }
 
-    public static void main(String[] args) {
-        new Main().AddEntity();
+    public static void main(String[] args) throws MizpizException {
+    //    new Main().MakeDEfaultEntity();
+   //     CRUD crud = new CRUD();
+   //       crud.entityDao.deleteEntity(1);
         new Main().testInstance();
         //   new Main().testInstance();
         //   System.out.print("Done!");

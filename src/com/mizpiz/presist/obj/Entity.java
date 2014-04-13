@@ -42,9 +42,13 @@ public class Entity {
 
     @Override
     public String toString() {
+        String pr=null;
+        for (Property property : properties) {
+            pr=pr+" , "+property.toString();
+        }
         return "Entity{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                     '}';
+                ", name='" + name +"Propeties:"+ pr
+                     +'}';
     }
 }
