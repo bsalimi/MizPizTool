@@ -12,7 +12,7 @@
 
         <many-to-one name="entity" class="com.mizpiz.presist.obj.Entity"/>
 
-        <set name="value" cascade="all">
+        <set name="values" cascade="all">
             <key column="VAL_ID"/>
             <one-to-many class="com.mizpiz.presist.obj.Value"/>
         </set>

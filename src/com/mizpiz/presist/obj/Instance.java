@@ -1,17 +1,34 @@
 package com.mizpiz.presist.obj;
 
+import javax.persistence.*;
 import java.util.Set;
 
 /**
  * Created by The Killer on 16/03/14.
  */
-
+@Entity
+@Table(name = "INSTANCE")
 public class Instance {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="INSTANCE_ID")
     private int id;
+    @Column(name="INSTANCE_NAME")
     private String name;
-    private Set<Property> properties;
-    private Set<Value> Value;
-    private com.mizpiz.presist.obj.Entity entity;
+    @OneToMany
+    @JoinTable(
+            name="INSTANCE_VALUE",
+            joinColumns = @JoinColumn( name="INSTANCE_ID"),
+            inverseJoinColumns = @JoinColumn( name="VALUE_ID")
+    )
+    private Set<Value> values;
+
+    @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+    @JoinTable(name="INSTANCEt_ENTITY",
+            joinColumns = @JoinColumn(name="INSTANCE_ID"),
+            inverseJoinColumns = @JoinColumn(name="ENTITY_ID")
+    )
+    private Myentity entity;
 
     public Instance() {
     }
@@ -32,20 +49,20 @@ public class Instance {
         this.name = name;
     }
 
-    public Set getValue() {
-        return Value;
+    public Set getValues() {
+        return values;
     }
 
-    public void setValue(Set value) {
-        Value = value;
+    public void setValues(Set values) {
+        this.values = values;
     }
 
-    public com.mizpiz.presist.obj.Entity getEntity() {
+    public com.mizpiz.presist.obj.Myentity getEntity() {
         return entity;
     }
 
 
-    public void setEntity(com.mizpiz.presist.obj.Entity entity) {
+    public void setEntity(com.mizpiz.presist.obj.Myentity entity) {
         this.entity = entity;
 
     }
@@ -57,7 +74,7 @@ public class Instance {
 
         return "Instance{" +
                 "id=" + id +
-                ", name='" + name +"Entitiy: "+entity.toString()+'\''  + "Value:"+ getValue().toString() +'\'' +
+                ", name='" + name +"Entitiy: "+entity.toString()+'\''  + "values:"+ getValues().toString() +'\'' +
                 '}';
     }
 }

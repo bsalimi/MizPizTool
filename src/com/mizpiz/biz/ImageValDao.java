@@ -1,7 +1,7 @@
 package com.mizpiz.biz;
 
-import com.mizpiz.presist.obj.Entity;
-import com.mizpiz.presist.obj.ImageVal;
+import com.mizpiz.presist.obj.Myentity;
+import com.mizpiz.presist.obj.SubValues.ImageVal;
 import com.mizpiz.presist.obj.Value;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -55,7 +55,7 @@ public class ImageValDao {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            Entity entity = (Entity) session.load(Value.class, new Integer(ValID));
+            Myentity entity = (Myentity) session.load(Value.class, new Integer(ValID));
             session.delete(entity);
             session.getTransaction().commit();
         } catch (RuntimeException e) {

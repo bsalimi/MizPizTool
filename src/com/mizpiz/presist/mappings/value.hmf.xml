@@ -7,24 +7,24 @@
         <id name="id" type="int" column="VAL_ID">
             <generator class="native"/>
         </id>
-        <discriminator column="Value_TYPE" type="string"/>
-        <subclass name="com.mizpiz.presist.obj.ImageVal" discriminator-value="IMAGE">
-            <property name="value" type="java.sql.Blob"/>
+        <!--<discriminator column="Value_TYPE" type="string"/>
+        <subclass name="com.mizpiz.presist.obj.SubValues.ImageVal" discriminator-values="IMAGE">
+            <property name="values" type="java.sql.Blob"/>
             <one-to-one  name="property" class="com.mizpiz.presist.obj.Property"/>
         </subclass>
-        <subclass name="com.mizpiz.presist.obj.MovieVal" discriminator-value="Movie">
-            <property name="value" type="java.sql.Blob"/>
+        <subclass name="com.mizpiz.presist.obj.SubValues.MovieVal" discriminator-values="Movie">
+            <property name="values" type="java.sql.Blob"/>
             <one-to-one  name="property" class="com.mizpiz.presist.obj.Property"/>
         </subclass>
-        <subclass name="com.mizpiz.presist.obj.IntegerVal" discriminator-value="Long">
-            <property name="value" type="long"/>
+        <subclass name="com.mizpiz.presist.obj.SubValues.IntegerVal" discriminator-values="Long">
+            <property name="values" type="long"/>
             <one-to-one  name="property" class="com.mizpiz.presist.obj.Property"/>
         </subclass>
-        <subclass name="com.mizpiz.presist.obj.StringVal" discriminator-value="String">
-            <property name="value" type="java.lang.String"/>
+        <subclass name="com.mizpiz.presist.obj.SubValues.StringVal" discriminator-values="String">
+            <property name="values" type="java.lang.String"/>
             <one-to-one  name="property" class="com.mizpiz.presist.obj.Property"/>
-        </subclass>
-
+        </subclass>-->
+        <many-to-one name=""
 
     </class>
 

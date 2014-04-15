@@ -1,6 +1,6 @@
 package com.mizpiz.biz;
 
-import com.mizpiz.presist.obj.Entity;
+import com.mizpiz.presist.obj.Myentity;
 import com.mizpiz.presist.obj.Instance;
 import com.mizpiz.presist.obj.Value;
 import org.hibernate.HibernateException;
@@ -56,7 +56,7 @@ public class InstanceDao {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            Entity entity = (Entity) session.load(Entity.class, new Integer(entityID));
+            Myentity entity = (Myentity) session.load(Myentity.class, new Integer(entityID));
             session.delete(entity);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
@@ -71,7 +71,7 @@ public class InstanceDao {
         }
     }
 
-    public static void updateInstance(Entity entity) throws MizpizException {
+    public static void updateInstance(Myentity entity) throws MizpizException {
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {

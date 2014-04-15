@@ -1,12 +1,10 @@
 package com.mizpiz.biz;
 
-import com.mizpiz.presist.obj.StringVal;
+import com.mizpiz.presist.obj.SubValues.StringVal;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import java.util.List;
 
 /**
  * Created by babak on 2014-04-04.
@@ -18,16 +16,7 @@ public class StringValDao {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try{
             trns = session.beginTransaction();
-     //       String hql = "FROM  com.mizpiz.presist.obj.Value E WHERE  E.valE.value = :string_val";
-     //       query = session.createQuery(hql);
-     //       query.setParameter("string_val",string.getValue());
-     //       List results = query.list();
-     //       System.out.print("results size"+ results.size()+ "\n");
-     //       if(results.size() != 0) {
-     //           System.out.print(string.toString()+"Already exists \n");
-    //            throw new MizpizException(MizpizException.Uniqueness_ERROR);
-            //    string.toString();
-       //         session.s;
+            System.out.print(string.toString());
             session.save(string);
             session.getTransaction().commit();
                 System.out.print("Value Saved! \n" );

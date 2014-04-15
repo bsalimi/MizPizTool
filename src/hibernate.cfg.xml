@@ -26,9 +26,14 @@
         <property  name="show_sql">true</property>
 
         <!-- List of XML mapping files -->
-        <mapping resource="com\mizpiz\presist\mappings\entity.hmf.xml"/>
-        <mapping resource="com\mizpiz\presist\mappings\property.hmf.xml"/>
-        <mapping resource="com\mizpiz\presist\mappings\value.hmf.xml"/>
-        <mapping resource="com\mizpiz\presist\mappings\instance.hmf.xml"/>
+        <mapping class="com.mizpiz.presist.obj.Myentity"/>
+        <mapping class="com.mizpiz.presist.obj.Property"/>
+        <mapping class="com.mizpiz.presist.obj.Instance"/>
+        <mapping class="com.mizpiz.presist.obj.Value"/>
+        <mapping class="com.mizpiz.presist.obj.SubValues.ImageVal"/>
+        <mapping class="com.mizpiz.presist.obj.SubValues.StringVal"/>
+        <mapping class="com.mizpiz.presist.obj.SubValues.IntegerVal"/>
+        <mapping class="com.mizpiz.presist.obj.SubValues.MovieVal"/>
+
       </session-factory>
 </hibernate-configuration>
