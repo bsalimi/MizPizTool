@@ -1,15 +1,21 @@
-import com.mizpiz.biz.CRUD;
 import com.mizpiz.biz.HibernateUtil;
 import com.mizpiz.biz.MizpizException;
+import com.mizpiz.biz.crud.EntityDao;
+import com.mizpiz.biz.crud.InstanceDao;
+import com.mizpiz.biz.crud.PropertyDao;
+import com.mizpiz.biz.crud.ValueDao;
 import com.mizpiz.presist.obj.Instance;
 import com.mizpiz.presist.obj.Myentity;
 import com.mizpiz.presist.obj.Property;
 import com.mizpiz.presist.obj.SubValues.StringVal;
 import com.mizpiz.presist.obj.Value;
+import javafx.beans.property.SetProperty;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -19,14 +25,12 @@ public class Main {
 
 
     public static void main(String[] args) throws MizpizException {
-        new Main().MakeDEfaultEntity();
+        new Main().testInstance();
         //    CRUD crud = new CRUD();
         //      crud.entityDao.deleteEntity(1);
         //     new Main().testInstance();
         //   new Main().testInstance();
         //   System.out.print("Done!");
-
-
     }
 
     public void printProperty() {
@@ -46,96 +50,87 @@ public class Main {
         p1.setName("price");
         p2.setName("Brand");
         e1.setName("bicycle");
-        Set<Property> propertySet = new HashSet<Property>();
-        CRUD crud = new CRUD();
         long id = 0;
-            crud.propertyDao.loadbyNandT(p1);
+           id=PropertyDao.loadbyNandT(p1);
         if (id != 0)
-            p1 = crud.propertyDao.loadbyID(id);
+            p1 = PropertyDao.loadbyID(id);
         else
             try {
-                crud.propertyDao.createProperty(p1);
+                PropertyDao.createProperty(p1);
             } catch (MizpizException e) {
                 e.printStackTrace();
                 System.out.print("e");
             }
 
       //  System.out.print(p2.toString());
-        id = crud.propertyDao.loadbyNandT(p2);
+        id = PropertyDao.loadbyNandT(p2);
         if (id != 0)
-            p2 = crud.propertyDao.loadbyID(id);
+            p2 = PropertyDao.loadbyID(id);
         else
             try {
-                crud.propertyDao.createProperty(p1);
+                PropertyDao.createProperty(p2);
             } catch (MizpizException e) {
                 e.printStackTrace();
                 System.out.print("e");
             }
-      //  System.out.print("SAVED PROPERTY is" + p2.toString());
+        System.out.print("SAVED PROPERTY is" + p2.toString());
+        Set<Property> propertySet = new HashSet<Property>();
         propertySet.add(p1);
         propertySet.add(p2);
         e1.setProperties(propertySet);
-        id = crud.entityDao.loadbyName(e1);
+        id = EntityDao.loadbyName(e1.name);
         if (id != 0)
-            e1 = crud.entityDao.loadbyID(id);
+            e1 = EntityDao.loadbyID(id);
         else try {
 
-            crud.entityDao.createEntity(e1);
+            EntityDao.createEntity(e1);
         }catch (MizpizException e) {
                 e.printStackTrace();
                 System.out.print("e");
             }
         }
-      public void testInstance() {
-        org.hibernate.Transaction trns = null;
-        Query query = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
+      public void testInstance() throws MizpizException {
         Instance instance = new Instance();
         instance.setName("mybic");
-        Myentity entity = (Myentity) session.load(Myentity.class, new Integer(2));
-        instance.setEntity(entity);
-
+        Myentity  myentity=EntityDao.loadbyID( EntityDao.loadbyName("bicycle"));
+        instance.setEntity(myentity);
         Set<Value> valuset = new HashSet<Value>();
-        Property[] properties = new Property[10];
+        List<Property> propertyList=new ArrayList<Property>();
+        Set<Property> propertySet = myentity.getProperties();
+          for (Property property : propertySet) {
+              propertyList.add(property);
+          }
         StringVal stringVal1 = new StringVal();
         StringVal stringVal2 = new StringVal();
         stringVal1.setValue("200");
         stringVal2.setValue("kohestan");
-        Set<Property> propertySet = entity.getProperties();
         int i = 0;
-
-        for (Property property : propertySet) {
-            if (property.getId() != 0)
-                properties[i] = property;
-            System.out.print(i);
-            i++;
-
-        }
-
-        for (int j = 0; j < 2; j++) {
-
-            Property property = properties[j];
-
-            //   System.out.print(properties[j].toString());
-
-        }
-        stringVal1.setProperty(properties[1]);
-        stringVal2.setProperty(properties[2]);
-        valuset.add(stringVal1);
-        valuset.add(stringVal2);
-        CRUD crud = new CRUD();
-        instance.setValues(valuset);
-
-        //  System.out.print("instance is :"+ instance.getValues().toString());
-        try {
-
-            //   crud.instanceDao.createInstance(instance);
-            crud.stringValDao.createString(stringVal1);
-        } catch (MizpizException e) {
-            e.printStackTrace();
-            System.out.print("e");
-        }
+        stringVal1.setProperty(propertyList.get(0));
+        stringVal2.setProperty(propertyList.get(1));
+   //     Long id = ValueDao.loadbyDV("S",stringVal1.getValue());
+        ValueDao.createValue(stringVal1);
+   //       if (id != 0)
+//              stringVal1 = (StringVal) ValueDao.loadbyID(id);
+//          else
+//          try {
+//              ValueDao.createValue(stringVal1);
+//          }catch (MizpizException e) {
+//              e.printStackTrace();
+//              System.out.print("e");
+//          }
+//          id = ValueDao.loadbyDV("S", stringVal2.getValue());
+//          if (id != 0)
+//              stringVal2 = (StringVal) ValueDao.loadbyID(id);
+//          else try {
+//              ValueDao.createValue(stringVal2);
+//          }catch (MizpizException e) {
+//              e.printStackTrace();
+//              System.out.print("e");
+//          }
+//
+//        valuset.add(stringVal1);
+//        valuset.add(stringVal2);
+//        instance.setValues(valuset);
+//        InstanceDao.createInstance(instance);
     }
-
-
 }
