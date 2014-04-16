@@ -61,10 +61,8 @@ public class Instance {
         return entity;
     }
 
-
     public void setEntity(com.mizpiz.presist.obj.Myentity entity) {
         this.entity = entity;
-
     }
 
     @Override

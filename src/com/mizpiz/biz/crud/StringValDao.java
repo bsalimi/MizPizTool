@@ -1,5 +1,7 @@
-package com.mizpiz.biz;
+package com.mizpiz.biz.crud;
 
+import com.mizpiz.biz.HibernateUtil;
+import com.mizpiz.biz.MizpizException;
 import com.mizpiz.presist.obj.SubValues.StringVal;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -10,7 +12,7 @@ import org.hibernate.Transaction;
  * Created by babak on 2014-04-04.
  */
 public class StringValDao {
-    public static void createString(StringVal string) throws MizpizException{
+    public static void createString(StringVal string) throws MizpizException {
         Transaction trns = null;
         Query query=null;
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -50,7 +52,6 @@ public class StringValDao {
             }
             e.printStackTrace();
         } finally {
-            session.flush();
             session.close();
         }
     }
@@ -69,7 +70,6 @@ public class StringValDao {
             }
             e.printStackTrace();
         } finally {
-            session.flush();
             session.close();
         }
     }

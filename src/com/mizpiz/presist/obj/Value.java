@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
-        name="discriminator",
+        name="disc",
         discriminatorType=DiscriminatorType.STRING
 )
 @DiscriminatorValue("V")

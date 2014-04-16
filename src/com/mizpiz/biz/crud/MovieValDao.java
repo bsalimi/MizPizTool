@@ -1,5 +1,7 @@
-package com.mizpiz.biz;
+package com.mizpiz.biz.crud;
 
+import com.mizpiz.biz.HibernateUtil;
+import com.mizpiz.biz.MizpizException;
 import com.mizpiz.presist.obj.*;
 import com.mizpiz.presist.obj.SubValues.MovieVal;
 import org.hibernate.HibernateException;

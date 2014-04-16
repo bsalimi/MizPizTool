@@ -1,16 +1,18 @@
-package com.mizpiz.presist.obj;
+package com.mizpiz.presist.obj.SubValues;
 
+import com.mizpiz.presist.obj.Value;
+
+import javax.persistence.*;
 import java.sql.Blob;
 
 /**
  * Created by The Killer on 16/03/14.
  */
+@Entity
+@Table(name="Value")
+@DiscriminatorValue("IMG")
 public class ImageVal extends Value {
-
-    public ImageVal() {
-        this.setValue_Type("IMAGE");
-    }
-
+    @Lob
     public Blob value;
     public Blob getValue() {
         return value;
