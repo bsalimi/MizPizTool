@@ -4,6 +4,7 @@ import com.mizpiz.biz.HibernateUtil;
 import com.mizpiz.biz.MizpizException;
 import com.mizpiz.presist.obj.Myentity;
 import com.mizpiz.presist.obj.Value;
+import net.sf.ehcache.search.expression.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -74,8 +75,15 @@ public class ValueDao {
             session.close();
         }
     }
-    public static long loadbyDV(String dic, String val) {
+    public static long loadbyDV(Character dic, String val) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria=new
+        switch(dic)
+        {
+            case 'S': criteria.add(Restrictions.like("value", val));
+
+        }
+
         List<Myentity> result = session.createCriteria(Value.class)
                 .add(Restrictions.like("value", val))
                 .list();
