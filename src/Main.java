@@ -9,7 +9,7 @@ import com.mizpiz.presist.obj.Myentity;
 import com.mizpiz.presist.obj.Property;
 import com.mizpiz.presist.obj.SubValues.StringVal;
 import com.mizpiz.presist.obj.Value;
-import javafx.beans.property.SetProperty;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -25,6 +25,7 @@ public class Main {
 
 
     public static void main(String[] args) throws MizpizException {
+        new Main().MakeDEfaultEntity();
         new Main().testInstance();
         //    CRUD crud = new CRUD();
         //      crud.entityDao.deleteEntity(1);
@@ -51,7 +52,7 @@ public class Main {
         p2.setName("Brand");
         e1.setName("bicycle");
         long id = 0;
-           id=PropertyDao.loadbyNandT(p1);
+        id = PropertyDao.loadbyNandT(p1);
         if (id != 0)
             p1 = PropertyDao.loadbyID(id);
         else
@@ -62,7 +63,7 @@ public class Main {
                 System.out.print("e");
             }
 
-      //  System.out.print(p2.toString());
+        //  System.out.print(p2.toString());
         id = PropertyDao.loadbyNandT(p2);
         if (id != 0)
             p2 = PropertyDao.loadbyID(id);
@@ -84,22 +85,23 @@ public class Main {
         else try {
 
             EntityDao.createEntity(e1);
-        }catch (MizpizException e) {
-                e.printStackTrace();
-                System.out.print("e");
-            }
+        } catch (MizpizException e) {
+            e.printStackTrace();
+            System.out.print("e");
         }
-      public void testInstance() throws MizpizException {
+    }
+
+    public void testInstance() throws MizpizException {
         Instance instance = new Instance();
         instance.setName("mybic");
-        Myentity  myentity=EntityDao.loadbyID( EntityDao.loadbyName("bicycle"));
+        Myentity myentity = EntityDao.loadbyID(EntityDao.loadbyName("bicycle"));
         instance.setEntity(myentity);
         Set<Value> valuset = new HashSet<Value>();
-        List<Property> propertyList=new ArrayList<Property>();
+        List<Property> propertyList = new ArrayList<Property>();
         Set<Property> propertySet = myentity.getProperties();
-          for (Property property : propertySet) {
-              propertyList.add(property);
-          }
+        for (Property property : propertySet) {
+            propertyList.add(property);
+        }
         StringVal stringVal1 = new StringVal();
         StringVal stringVal2 = new StringVal();
         stringVal1.setValue("200");
@@ -107,26 +109,27 @@ public class Main {
         int i = 0;
         stringVal1.setProperty(propertyList.get(0));
         stringVal2.setProperty(propertyList.get(1));
-   //     Long id = ValueDao.loadbyDV("S",stringVal1.getValue());
+        Long id = ValueDao.loadbyDV("S", stringVal1.getValue());
         ValueDao.createValue(stringVal1);
-   //       if (id != 0)
-//              stringVal1 = (StringVal) ValueDao.loadbyID(id);
-//          else
-//          try {
-//              ValueDao.createValue(stringVal1);
-//          }catch (MizpizException e) {
-//              e.printStackTrace();
-//              System.out.print("e");
-//          }
-//          id = ValueDao.loadbyDV("S", stringVal2.getValue());
-//          if (id != 0)
-//              stringVal2 = (StringVal) ValueDao.loadbyID(id);
-//          else try {
-//              ValueDao.createValue(stringVal2);
-//          }catch (MizpizException e) {
-//              e.printStackTrace();
-//              System.out.print("e");
-//          }
+        if (id != 0)
+            stringVal1 = (StringVal) ValueDao.loadbyID(id);
+        else
+            try {
+                ValueDao.createValue(stringVal1);
+                ValueDao.createValue(stringVal2);
+            } catch (MizpizException e) {
+                e.printStackTrace();
+                System.out.print("e");
+            }
+         id = ValueDao.loadbyDV("S", stringVal2.getValue());
+          if (id != 0)
+              stringVal2 = (StringVal) ValueDao.loadbyID(id);
+          else try {
+             ValueDao.createValue(stringVal1);
+          }catch (MizpizException e) {
+              e.printStackTrace();
+              System.out.print("e");
+          }
 //
 //        valuset.add(stringVal1);
 //        valuset.add(stringVal2);

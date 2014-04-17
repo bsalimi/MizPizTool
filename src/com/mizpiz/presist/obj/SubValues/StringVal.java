@@ -16,7 +16,7 @@ import java.sql.Blob;
 @DiscriminatorValue("S")
 public class StringVal extends Value {
     // the MountainBike subclass adds one field
-    @Column(name="value")
+    @Column(name="StringVal")
     private String value;
     public  String getValue() {
         return value;

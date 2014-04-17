@@ -19,7 +19,7 @@ public class IntegerVal extends Value {
 
 
     // the MountainBike subclass adds one field
-    @Column(name="Value")
+    @Column(name="IntegerVal")
     public long value;
     public long getValue() {
         return value;
